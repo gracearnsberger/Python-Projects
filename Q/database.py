@@ -4,16 +4,20 @@ import os
 conn = sqlite3.connect("python.db")
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS tbl_files
-                 (id integer primary key, name varchar(50))
-          """)
+                 (id integer primary key, name varchar(50))""")
 
-## change the path
-path = 'C:\Python Projects\Q'
+fileList = ('information.docx', 'Hello.txt', 'myImage.png', 'myMovie.mpg', 'World.txt', 'data.pdf', 'myPhoto.jpg') 
 
-for file in os.listdir(path):
-    if file.endswith('.txt'):
-        print(file)
-        cursor.execute("""insert into tbl_files (name) values ('{}') """.format(file))
+
+for filename in fileList:
+    if (filename.endswith('.txt')):
+        print(filename)
+        cursor.execute("""insert into tbl_files ("col_filename") values ('{}') """.format(filename))
         conn.commit()
 
-conn.close()      
+conn.close() 
+
+
+
+       
+    
